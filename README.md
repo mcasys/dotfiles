@@ -1,8 +1,10 @@
+# Customized for mc@sys needs
+
 # Installation
 ### Download and change folder
 ```
 cd ~
-git clone https://github.com/flipsidecreations/dotfiles.git
+git clone https://github.com/mcasys/dotfiles.git
 
 cd dotfiles
 ```
