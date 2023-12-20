@@ -58,14 +58,28 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     prompt_color='\[\033[;32m\]'
+    username_color='\[\033[;92m\]'
+    #hostname_color='\[\033[;32m\]'
     info_color='\[\033[1;34m\]'
     prompt_symbol=📛
     if [ "$EUID" -eq 0 ]; then # Change prompt colors for root user
 	prompt_color='\[\033[;94m\]'
+        username_color='\[\033[1;31m\]'
 	info_color='\[\033[1;31m\]'
 	prompt_symbol=💀
     fi
-    PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}('$info_color'\u${prompt_symbol}\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] '
+    hoststatus='hostnamectl status'
+    if [ "$hoststatus" =~ "Virtualization: lxc" ]; then
+	hostname_color='\[\033[;95m\]'
+    elif [ "$hoststatus" =~ "Virtualization: kvm" ]; then
+	hostname_color='\[\033[;93m\]'
+    elif [ "$hoststatus" =~ "Virtualization" ]; then
+	hostname_color='\[\033[;93m\]'
+    else 
+	hostname_color='\[\033[;97m\]'
+    fi
+
+    PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}('$username_color'\u${prompt_symbol}'$hostname_color'\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] '
     # BackTrack red prompt
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
