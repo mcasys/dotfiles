@@ -71,13 +71,13 @@ if [ "$color_prompt" = yes ]; then
     fi
     hoststatus=$(/usr/bin/hostnamectl status)
     if [[ $hoststatus =~ "Virtualization: lxc" ]]; then
-        hostname_color='\[\033[01;95m\]'
+        hostname_color='\[\033[01;93m\]'	# yellow
     elif [[ $hoststatus =~ "Virtualization: kvm" ]]; then
-        hostname_color='\[\033[01;93m\]'
+        hostname_color='\[\033[01;96m\]'	# aqua
     elif [[ $hoststatus =~ "Virtualization" ]]; then
-        hostname_color='\[\033[01;93m\]'
+        hostname_color='\[\033[01;96m\]'	# aqua
     else
-        hostname_color='\[\033[01;97m\]'
+        hostname_color='\[\033[01;95m\]'	# fuschia
     fi
 
     PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}('$username_color'\u'$symbol_color'${prompt_symbol}'$hostname_color'\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] '
@@ -125,7 +125,7 @@ fi
 
 # some more ls aliases
 alias ll='ls -l'
-alias la='ls -A'
+#alias la='ls -A'
 alias l='ls -CF'
 
 # Alias definitions.
