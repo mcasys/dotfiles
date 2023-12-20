@@ -59,15 +59,14 @@ fi
 if [ "$color_prompt" = yes ]; then
     prompt_color='\[\033[;92m\]'
     username_color='\[\033[01;92m\]'
-    symbol_color='\[\033[1;92m\]'
-    #hostname_color='\[\033[;32m\]'
-    info_color='\[\033[1;34m\]'
+    symbol_color='\[\033[;92m\]'
+    info_color='\[\033[01;92m\]'
     prompt_symbol=📛
     if [ "$EUID" -eq 0 ]; then # Change prompt colors for root user
 	prompt_color='\[\033[;31m\]'
         username_color='\[\033[01;31m\]'
-	symbol_color='\[\033[1;31m\]'
-	info_color='\[\033[1;31m\]'
+	symbol_color='\[\033[;31m\]'
+	info_color='\[\033[01;31m\]'
 	prompt_symbol=💀
     fi
     hoststatus=$(/usr/bin/hostnamectl status)
